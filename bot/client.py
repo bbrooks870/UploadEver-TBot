@@ -2,7 +2,7 @@ from typing import Union
 from pyromod import listen
 from pyrogram import Client as pyClient
 from pyrogram.storage import Storage
-from configs import Config, LOGGER
+from config import Config, LOGGER
 
 class Client(pyClient):
     """ Custom Bot Class """

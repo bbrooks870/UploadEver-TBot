@@ -4,15 +4,13 @@ from logging.handlers import RotatingFileHandler
 from subprocess import run as srun
 from dotenv import load_dotenv
 
-logging.basicConfig(
-    level=logging.INFO,
+basicConfig(
+    level=INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]",
     datefmt="%d-%b-%y %I:%M:%S %p",
     handlers=[
-        RotatingFileHandler(
-            "log.txt", maxBytes=50000000, backupCount=10
-        ),
-        logging.StreamHandler(),
+        RotatingFileHandler("log.txt", maxBytes=50000000, backupCount=10),
+        StreamHandler(),
     ],
 )
 

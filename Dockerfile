@@ -2,6 +2,8 @@ FROM python:3.8-slim-buster
 
 WORKDIR /app
 
+RUN apt -qq update --fix-missing && apt -qq install -y git wget curl
+
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 

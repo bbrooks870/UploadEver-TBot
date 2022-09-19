@@ -14,8 +14,9 @@ async def auth_handler(c: Client, m: Message):
         await input_msg.edit("Process Cancelled!")
         return
     else:
+        await auth_msg.delete()
         await input_msg.delete()
         resp = rget(f"https://uploadever.in/api/account/info?key={Token}")
         jdata = resp.json()
         LOGGER.info("[UploadEver.in] User Log In")
-        await auth_msg.edit_text(text=f"{jdata['result']['email']} Successfully Logged In !!")
+        await m.reply_text(text=f"{jdata['result']['email']} Successfully Logged In !!")

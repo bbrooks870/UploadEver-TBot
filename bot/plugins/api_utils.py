@@ -41,6 +41,11 @@ async def stats_handler(c: Client, m: Message):
 • Premium Expire : {jdata['result']['premium_expire']}
 
 • Server Time : {jdata['server_time']}
+
 '''
+        resp = rget(f"https://uploadever.in/api/account/stats?key={Token}")
+        jdata = resp.json()
+        if jdata['msg'] != "OK" :
+            text_ += f"Account Stats :\n\n• {jdata['msg']}"
     await m.reply_text(text=text_)
 

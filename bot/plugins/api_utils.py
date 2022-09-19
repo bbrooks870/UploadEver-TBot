@@ -42,5 +42,5 @@ async def stats_handler(c: Client, m: Message):
 
 • Server Time : {jdata['server_time']}
 '''
-        await m.reply_text(text=text_)
+    await m.reply_text(text=text_)
 

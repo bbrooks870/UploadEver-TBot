@@ -8,9 +8,10 @@ from pyrogram.types import Message
 
 @Client.on_message(filters.command("clone") & filters.private)
 async def clone_handler(c: Client, m: Message):
-    ''' Clone File from Server API:
+    ''' Clone URL from UploadEver.in Server API:
 
     :param url: The UploadEver.in URL you want to Clone
+    :param token: Your Own API token of UploadEver.in
 
     OUTPUT:
     {
@@ -26,7 +27,9 @@ async def clone_handler(c: Client, m: Message):
 
     upData = (m.text).split(' ')
     if len(upData) > 1: filecode = (upData[1].split("/"))[-1]
-    else: await m.reply_text(text="🖇 <b><i>Give a UploadEver.in Link to Clone !!</i></b>", parse_mode=enums.ParseMode.HTML, quote=True)
+    else: 
+        await m.reply_text(text="🖇 <b><i>Give a UploadEver.in Link to Clone !!</i></b>", parse_mode=enums.ParseMode.HTML, quote=True)
+        return
     Token = USERS_API.get(m.chat.id, None)
     if Token is None: text_ = "<b>😬 I see, you have not Login, Do <i>/login</i> to Use this Command. </b>"
     else:

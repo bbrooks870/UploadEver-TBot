@@ -57,10 +57,9 @@ async def stats_handler(c: Client, m: Message):
 
 @Client.on_message(filters.command("logout") & filters.private)
 async def logout_handler(c: Client, m: Message):
-    Token = USERS_API.get(m.chat.id, None)
-    if Token is None:
-        text_ = "Login First /login to LogOut"
-    else:
+    try:
         USERS_API.pop(m.chat.id)
         text_ = "Successfully LogOut"
+    except KeyError:
+        text_ = "Login First /login to LogOut"
     await m.reply_text(text=text_)

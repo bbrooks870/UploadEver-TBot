@@ -14,7 +14,7 @@ async def auth_handler(c: Client, m: Message):
         await input_msg.edit("Process Cancelled!")
         return
     else:
-        c.cancel_listener(m.chat.id)
+        c.cancel_listener(m.id)
         resp = rget(f"https://uploadever.in/api/account/info?key={Token}")
         jdata = resp.json()
         LOGGER.info("[UploadEver.in] User Log In")

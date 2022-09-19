@@ -6,7 +6,7 @@ from pyrogram.types import Message, ForceReply
 
 @Client.on_message(filters.command("login") & filters.private)
 async def login_handler(c: Client, m: Message):
-    auth_msg = await m.reply_text(text="Authorization: \n1. Your Account to Upload Contents")
+    auth_msg = await m.reply_text(text="Authorization: \n1. Your Account to Upload Contents", reply_markup=ForceReply(True, "Enter UploadEver.in API Key"))
 
     input_msg: Message = await c.listen(m.chat.id)
     Token = input_msg.text
@@ -15,7 +15,8 @@ async def login_handler(c: Client, m: Message):
         await m.reply_text("Process Cancelled!")
         return
     elif Token and Token.startswith("/"):
-        await auth_msg.edit("Process Cancelled!")
+        await auth_msg.delete()
+        await m.reply_text("Process Cancelled!")
         return await input_msg.continue_propagation()
     else:
         await input_msg.delete()

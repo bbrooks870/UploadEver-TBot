@@ -25,7 +25,8 @@ async def clone_handler(c: Client, m: Message):
     '''
 
     upData = (m.text).split(' ')
-    filecode = (upData[1].split("/"))[-1]
+    if len(upData) > 1: filecode = (upData[1].split("/"))[-1]
+    else: await m.reply_text(text="🖇 <b><i>Give a UploadEver.in Link to Clone !!</i></b>", parse_mode=enums.ParseMode.HTML, quote=True)
     Token = USERS_API.get(m.chat.id, None)
     if Token is None: text_ = "<b>😬 I see, you have not Login, Do <i>/login</i> to Use this Command. </b>"
     else:

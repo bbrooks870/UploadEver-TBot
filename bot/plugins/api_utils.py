@@ -8,7 +8,7 @@ from pyrogram.types import Message, ForceReply
 async def login_handler(c: Client, m: Message):
     await m.reply_text(text="Auth Your Account to Upload Contents", reply_markup=ForceReply(True, "Enter UploadEver API Key"))
 
-    input_msg = await c.listen(m.chat.id)
+    input_msg: Message = await c.listen(m.chat.id)
     Token = input_msg.text
     if Token is None:
         await input_msg.edit("Process Cancelled!")
@@ -16,5 +16,6 @@ async def login_handler(c: Client, m: Message):
     else:
         resp = rget(f"https://uploadever.in/api/account/info?key={Token}")
         jdata = resp.json()
+
         LOGGER.info(jdata)
-        m.reply_text(jdata)
+        await m.reply_text(f"{jdata['email']} Successfully Logged In !!")

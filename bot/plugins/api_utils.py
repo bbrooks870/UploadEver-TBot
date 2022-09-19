@@ -18,4 +18,4 @@ async def auth_handler(c: Client, m: Message):
         resp = rget(f"https://uploadever.in/api/account/info?key={Token}")
         jdata = resp.json()
         LOGGER.info("[UploadEver.in] User Log In")
-        await auth_msg.edit(text=f"{jdata['result']['email']} Successfully Logged In !!")
+        await auth_msg.edit_text(text=f"{jdata['result']['email']} Successfully Logged In !!")

@@ -1,7 +1,10 @@
+#Copyright 2022-present, Author: 5MysterySD
+
 import os
 import logging
 from logging.handlers import RotatingFileHandler
 
+# Logging >>>
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]",
@@ -17,6 +20,10 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 LOGGER = logging.getLogger(__name__)
 
+# Initial >>>
+USERS_API = {}
+
+# Invoke Data >>>
 class Config:
     API_ID = int(os.environ.get("API_ID", ""))
     API_HASH = os.environ.get("API_HASH", "")

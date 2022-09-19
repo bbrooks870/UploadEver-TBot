@@ -24,4 +24,23 @@ async def auth_handler(c: Client, m: Message):
         LOGGER.info("[UploadEver.in] User Log In")
         await m.reply_text(text=f"{jdata['result']['email']} Successfully Logged In !!")
 
+@Client.on_message(filters.command("stats") & filters.private)
+async def stats_handler(c: Client, m: Message):
+    Token = USERS_API.get(m.chat.id, '')
+    if not Token:
+        text_ = "Login First /auth"
+    else:
+        resp = rget(f"https://uploadever.in/api/account/info?key={Token}")
+        jdata = resp.json()
+        text_ = f'''Stats:
+
+• Email : {jdata['result']['email']}
+• Balance : {jdata['result']['balance']}
+• Storage Left : {jdata['result']['storage_left']}
+• Storage Used : {jdata['result']['storage_used'] or 0}
+• Premium Expire : {jdata['result']['premium_expire']}
+
+• Server Time : {jdata['server_time']}
+'''
+        await m.reply_text(text=text_))
 

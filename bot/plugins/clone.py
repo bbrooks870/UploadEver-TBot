@@ -24,7 +24,7 @@ async def clone_handler(c: Client, m: Message):
     }
     '''
 
-    upData = m.split(' ')
+    upData = (m.text).split(' ')
     filecode = (upData[1].split("/"))[-1]
     Token = USERS_API.get(m.chat.id, None)
     if Token is None: text_ = "<b>😬 I see, you have not Login, Do <i>/login</i> to Use this Command. </b>"

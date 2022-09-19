@@ -3,3 +3,5 @@ TgCrypto
 pyromod
 python-dotenv
 requests
+psutil
+motor

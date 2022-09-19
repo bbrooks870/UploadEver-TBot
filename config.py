@@ -13,6 +13,8 @@ logging.basicConfig(
         logging.StreamHandler(),
     ],
 )
+
+logging.getLogger("pyrogram").setLevel(logging.ERROR)
 LOGGER = logging.getLogger(__name__)
 
 class Config:

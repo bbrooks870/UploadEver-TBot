@@ -18,4 +18,4 @@ async def login_handler(c: Client, m: Message):
         jdata = resp.json()
 
         LOGGER.info(jdata)
-        await m.reply_text(f"{jdata['email']} Successfully Logged In !!")
+        await m.reply_text(f"{jdata['result']['email']} Successfully Logged In !!")

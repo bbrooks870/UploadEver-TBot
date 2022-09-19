@@ -26,8 +26,8 @@ async def auth_handler(c: Client, m: Message):
 
 @Client.on_message(filters.command("stats") & filters.private)
 async def stats_handler(c: Client, m: Message):
-    Token = USERS_API.get(m.chat.id, '')
-    if not Token:
+    Token = USERS_API.get(m.chat.id, None)
+    if Token is None:
         text_ = "Login First /auth"
     else:
         resp = rget(f"https://uploadever.in/api/account/info?key={Token}")

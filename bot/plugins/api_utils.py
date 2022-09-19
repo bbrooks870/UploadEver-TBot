@@ -1,4 +1,3 @@
-import json
 from requests import get as rget
 
 from bot.client import Client
@@ -12,9 +11,10 @@ async def login_handler(c: Client, m: Message):
     input_msg = await c.listen(m.chat.id)
     Token = input_msg.text
     if Token is None:
-        await editable.edit("Process Cancelled!")
+        await input_msg.edit("Process Cancelled!")
         return
     else:
         resp = rget(f"https://uploadever.in/api/account/info?key={Token}")
         jdata = resp.json()
-        m.reply_text(json)
+        LOGGER.info(jdata)
+        m.reply_text(jdata)

@@ -1,5 +1,5 @@
 from requests import get as rget
-
+from config import LOGGER
 from bot.client import Client
 from pyrogram import filters
 from pyrogram.types import Message, ForceReply

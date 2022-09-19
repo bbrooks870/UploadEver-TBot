@@ -14,6 +14,9 @@ async def login_handler(c: Client, m: Message):
         await auth_msg.delete()
         await m.reply_text("Process Cancelled!")
         return
+    elif Token and Token.startswith("/"):
+        await auth_msg.edit("Process Cancelled!")
+        return await input_msg.continue_propagation()
     else:
         await input_msg.delete()
         await auth_msg.delete()
@@ -27,6 +30,7 @@ async def login_handler(c: Client, m: Message):
             LOGGER.info(f"[UploadEver.in] User: {m.chat.id} Log In Unsuccessful")
             txt = jdata['msg']
         await m.reply_text(text=txt)
+
 
 @Client.on_message(filters.command("logout") & filters.private)
 async def logout_handler(c: Client, m: Message):

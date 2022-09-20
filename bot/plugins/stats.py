@@ -13,8 +13,27 @@ async def stats_handler(c: Client, m: Message):
     ''' UploadEver Account Stats Fetched from API
     :param token: Your Own API token of UploadEver.in
 
-    OUTPUT:
+    OUTPUT: (info)
     
+    OUTPUT: (stats)
+    {
+        "msg":"OK",
+        "server_time":"2022-09-20 01:02:02",
+        "status":200,
+        "result":[
+            {
+             "profit_rebills":"0.0000",
+             "downloads":1,
+             "profit_dl":"0.0000",
+             "sales":0,
+             "profit_refs":"0.00000",
+             "profit_sales":"0.0000",
+             "profit_site":"0.00000",
+             "day":"2022-09-19",
+             "profit_total":"0.00000"
+            }
+        ]
+    }
     '''
 
     Token = USERS_API.get(m.chat.id, None)
@@ -33,10 +52,23 @@ async def stats_handler(c: Client, m: Message):
 
 • ♻️ <b>Server Time :</b> <code>{jdata['server_time']}</code>
 
+<b>🗃 Your Account Stats :</b>
+
 '''
         resp2 = rget(f"https://uploadever.in/api/account/stats?key={Token}")
         jdata2 = resp2.json()
         if jdata2['msg'] != "OK" :
-            text_ += f"<b>🗃 Your Account Stats :</b>\n\n• <b>{jdata2['msg']}</b>"
+            text_ += f"• ⛔️ <b>{jdata2['msg']}</b> ⛔️"
+        elif jdata2['status'] == 200:
+            sData = jdata2['result'][0]
+            text_ += f'''• profit_rebills : {sData['profit_rebills']}
+• 📥 <b>Downloads :</b> <code>{sData['downloads']}</code>
+• "profit_dl": {sData['profit_dl']}
+• "sales": {sData['sales']}
+• "profit_refs": {sData['profit_refs']}
+• "profit_site": {sData['profit_site']}
+• "day": {sData['day']}
+• "profit_total": {sData['profit_total']}
+'''
 
     await m.reply_text(text=text_, parse_mode=enums.ParseMode.HTML, quote=True)

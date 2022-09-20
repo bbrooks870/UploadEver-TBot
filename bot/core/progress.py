@@ -16,7 +16,7 @@ async def progress_for_pyrogram(current, total, ud_type, message: Union[Message,
         speed = current / diff
         elapsed_time = convertTime(round(diff) * 1000)
         time_to_completion = round((total - current) / speed) * 1000
-        estimated_total_time = convertTime(elapsed_time + time_to_completion)
+        estimated_total_time = convertTime((round(diff) * 1000) + time_to_completion)
 
         tmsg = "[{0}{1}] \n".format(
             ''.join(["●" for _ in range(floor(percentage / 5))]),

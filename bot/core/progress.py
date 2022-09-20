@@ -24,7 +24,7 @@ async def progress_for_pyrogram(current, total, top_msg, message: Union[Message,
             ''.join(["▱" for _ in range(20 - floor(percentage / 5))])
             )
         
-        tmsg += f''' `{round(percentage, 2)}%`
+        tmsg += f''' <code>{round(percentage, 2)}%</code>
 
 🛟 <b>Sᴛᴀᴛᴜs:</b> <i>Downloading 📥</i>
 

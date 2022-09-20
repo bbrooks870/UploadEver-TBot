@@ -70,7 +70,7 @@ async def upload_file_handler(c: Client, m: Message):
         __downLocation = await c.download_media(message=rpy_media, 
             file_name=__fileName,
             progress=progress_for_pyrogram,
-            progress_args=("Uploading ...\n",
+            progress_args=(f"🚄 Fɪʟᴇɴᴀᴍᴇ: {file_name}",
                 downMSG,
                 __time
             )
@@ -78,6 +78,7 @@ async def upload_file_handler(c: Client, m: Message):
     except Exception as err:
         await downMSG.edit(f"⛔️ Download Error : {err}")
         LOGGER.error(err)
+        return
     LOGGER.info(f"[TG Upload] User: {m.chat.id} File Location: {__downLocation}")
     await downMSG.edit(f"🔍 <b>Found a UploadEver Server !!</b>\n\n <i>Session ID:</i> <code>{SESS_ID}</code> \n\n 📤 <b>Media Downloaded, Uploading...</b>", parse_mode=enums.ParseMode.HTML)
     

@@ -1,6 +1,7 @@
 #Copyright 2022-present, Author: 5MysterySD
 
 from pathlib import Path
+from time import time
 from subprocess import check_output
 from asyncio import sleep as asleep
 from requests import get as rget

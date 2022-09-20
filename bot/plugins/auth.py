@@ -7,6 +7,9 @@ from pyrogram.types import Message, ForceReply
 
 @Client.on_message(filters.command("login") & filters.private)
 async def login_handler(c: Client, m: Message):
+    if m.chat.id in USERS_API.keysk():
+        await m.reply_text(text="<b>😑 You have Already Login,</b> <i>If you want to Logout, Use /logout</i>", parse_mode=enums.ParseMode.HTML, quote=True)
+        return
     auth_msg = await m.reply_text(text="Authorization: \n1. Your Account to Upload Contents", reply_markup=ForceReply(True, "Enter UploadEver.in API Key"))
     input_msg: Message = await c.listen(m.chat.id)
     Token = input_msg.text

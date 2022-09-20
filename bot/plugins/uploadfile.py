@@ -2,7 +2,7 @@
 
 from pathlib import Path
 from requests import get as rget
-from config import LOGGER, USERS_API
+from config import LOGGER, USERS_API, Config
 from bot.client import Client
 from pyrogram import filters, enums
 from pyrogram.types import Message
@@ -14,7 +14,7 @@ async def upload_file_handler(c: Client, m: Message):
     rpy_media = m.reply_to_message
     media = [rpy_media.document, rpy_media.video, rpy_media.audio]
     file_name = [md for md in media if md is not None][0].file_name
-    __fileName = str(Path("./").resolve()) + "/"
+    __fileName = f"{Path("./").resolve()}/{Config.DIRECTORY}"
     try:
         __downLocation = await c.download_media(message=rpy_media, file_name=__fileName)
     except Exception as err:

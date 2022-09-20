@@ -55,7 +55,7 @@ async def upload_file_handler(c: Client, m: Message):
         return
     await asleep(1.5)
 
-    await downMSG.edit(f"🔍 <b>Found a UploadEver Server !!</b>\n\n <i>Session ID:</i> <code>{SESS_ID}</code> \n\n 📤 <b>Starting Media Download...</b>")
+    await downMSG.edit(f"🔍 <b>Found a UploadEver Server !!</b>\n\n <i>Session ID:</i> <code>{SESS_ID}</code> \n\n 📤 <b>Starting Media Download...</b>", parse_mode=enums.ParseMode.HTML)
     media = [rpy_media.document, rpy_media.video, rpy_media.audio]
     file = [md for md in media if md is not None][0]
     file_name = file.file_name
@@ -67,7 +67,7 @@ async def upload_file_handler(c: Client, m: Message):
         await downMSG.edit(f"⛔️ Download Error : {err}")
         LOGGER.error(err)
     LOGGER.info(f"[TG Upload] User: {m.chat.id} File Location: {__downLocation}")
-    await downMSG.edit(f"🔍 <b>Found a UploadEver Server !!</b>\n\n <i>Session ID:</i> <code>{SESS_ID}</code> \n\n 📤 <b>Media Downloaded, Uploading...</b>", quote=True, parse_mode=enums.ParseMode.HTML)
+    await downMSG.edit(f"🔍 <b>Found a UploadEver Server !!</b>\n\n <i>Session ID:</i> <code>{SESS_ID}</code> \n\n 📤 <b>Media Downloaded, Uploading...</b>", parse_mode=enums.ParseMode.HTML)
     
     UpData = check_output(f"curl -F 'sess_id={SESS_ID}' -F 'file_0=@{__downLocation}' {UP_SER_URL}", shell=True).decode('utf-8')
     await downMSG.delete()

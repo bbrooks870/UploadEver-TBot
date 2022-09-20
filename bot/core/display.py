@@ -2,6 +2,7 @@
 
 def convertBytes(sz) -> str:
     if not sz: return ""
+    sz = int(sz)
     ind = 0
     Units = {0: 'Bytes', 1: 'KB', 2: 'MB', 3: 'GB', 4: 'TB', 5: 'PB', 6: 'EB'}
     while sz > 2**10:

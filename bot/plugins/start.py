@@ -8,8 +8,8 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 async def start_handler(c: Client, m: Message):
     ''' Start Message of the Bot !!'''
 
-    await m.reply_text(
-        text='''<b>🔰 Hello, I am UploadEver.in Uploader Bot! 🔰</b>
+    await m.reply_photo(photo='https://te.legra.ph/file/fff361f8f1019fa5162f9.jpg',
+        caption='''<b>🔰 Hello, I am UploadEver.in Uploader Bot! 🔰</b>
 
 ☃️  <i>Here you can Upload Files via Forwarding Telegram Files/ Sending Telegram File/Send UploadEver Links/ Direct Download Links to this Bot!</i>
 

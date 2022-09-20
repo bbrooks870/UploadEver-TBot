@@ -1,3 +1,5 @@
+#Copyright 2022-present, Author: 5MysterySD
+
 from asyncio import sleep as asleep
 from requests import get as rget
 from config import LOGGER, USERS_API
@@ -7,7 +9,11 @@ from pyrogram.types import Message, ForceReply
 
 @Client.on_message(filters.command("login") & filters.private)
 async def login_handler(c: Client, m: Message):
-    if m.chat.id in USERS_API.keysk():
+    ''' Login Into Bot to Use Bot Features
+    :param token: Your Own API token of UploadEver.in
+    '''
+
+    if m.chat.id in USERS_API.keys():
         await m.reply_text(text="<b>😑 You have Already Login,</b> <i>If you want to Logout, Use /logout</i>", parse_mode=enums.ParseMode.HTML, quote=True)
         return
     auth_msg = await m.reply_text(text="Authorization: \n1. Your Account to Upload Contents", reply_markup=ForceReply(True, "Enter UploadEver.in API Key"))
@@ -39,6 +45,10 @@ async def login_handler(c: Client, m: Message):
 
 @Client.on_message(filters.command("logout") & filters.private)
 async def logout_handler(c: Client, m: Message):
+    ''' Logout from Bot to Disable Bot Features
+    :param token: Your Own API token of UploadEver.in
+    '''
+
     try:
         USERS_API.pop(m.chat.id)
         text_ = "<i>🥲 You Successfully Logout.</i> <b>Do /login to Come Again<b>"

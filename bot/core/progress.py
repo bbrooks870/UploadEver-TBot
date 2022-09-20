@@ -9,7 +9,7 @@ from pyrogram.types import Message, CallbackQuery
 from pyrogram.errors import FloodWait
 
 
-async def progress_for_pyrogram(current, total, ud_type, message: Union[Message, CallbackQuery], start):
+async def progress_for_pyrogram(current, total, top_msg, message: Union[Message, CallbackQuery], start):
     now = time()
     diff = now - start
     if round(diff % 10.00) == 0 or current == total:
@@ -33,7 +33,7 @@ async def progress_for_pyrogram(current, total, ud_type, message: Union[Message,
         LOGGER.info("Jelp dykgzjfjfzjgxjjzfxkg kg,kgxkg kg kg ")
         try:
             await message.edit_text(
-                text=f"{ud_type}\n\n{tmp}",
+                text=f"{top_msg}\n\n{tmsg}",
                 parse_mode=enums.ParseMode.MARKDOWN
             )
         except FloodWait as e:

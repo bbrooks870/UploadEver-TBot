@@ -7,6 +7,7 @@ from requests import get as rget
 from config import LOGGER, USERS_API, Config
 from bot.client import Client
 from bot.core.display import convertBytes
+from bot.core.progress import progress_for_pyrogram
 from pyrogram import filters, enums
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -64,7 +65,15 @@ async def upload_file_handler(c: Client, m: Message):
     file_size = file.file_size
     __fileName = f"{Path('./').resolve()}/{Config.DIRECTORY}"
     try:
-        __downLocation = await c.download_media(message=rpy_media, file_name=__fileName)
+        __time = time()
+        __downLocation = await c.download_media(message=rpy_media, 
+            file_name=__fileName,
+            progress=progress_for_pyrogram,
+            progress_args=("Uploading ...\n",
+                downMSG,
+                __time
+            )
+        )
     except Exception as err:
         await downMSG.edit(f"⛔️ Download Error : {err}")
         LOGGER.error(err)

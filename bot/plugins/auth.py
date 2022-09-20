@@ -16,7 +16,7 @@ async def login_handler(c: Client, m: Message):
     if m.chat.id in USERS_API.keys():
         await m.reply_text(text="<b>😑 You have Already Login,</b> <i>If you want to Logout, Use /logout</i>", parse_mode=enums.ParseMode.HTML, quote=True)
         return
-    auth_msg = await m.reply_text(text="Authorization: \n1. Your Account to Upload Contents", reply_markup=ForceReply(True, "Enter UploadEver.in API Key"))
+    auth_msg = await m.reply_text(text="🖨 <b>Bot Authorization:</b> \n\n<i>You can Get/Generate/Copy API Token from https://uploadever.in/?op=my_account</i>", parse_mode=enums.ParseMode.HTML, reply_markup=ForceReply(True, "Enter UploadEver.in API Key"))
     input_msg: Message = await c.listen(m.chat.id)
     Token = input_msg.text
     if Token is None:

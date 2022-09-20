@@ -38,5 +38,5 @@ async def progress_for_pyrogram(current, total, ud_type, message: Union[Message,
             )
         except FloodWait as e:
             await asleep(e.value)
-        except Exception:
-            pass
+        except Exception as e:
+            LOGGER.info(e)

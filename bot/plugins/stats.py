@@ -28,7 +28,7 @@ async def stats_handler(c: Client, m: Message):
 • 📮 <b>Email :</b> <i>{jdata['result']['email']}</i>
 • 💸 <b>Balance :</b> <code>{jdata['result']['balance']}</code>
 • 📭 <b>Storage Left :</b> <code>{'Unlimited' if jdata['result']['storage_left'] == 'inf' else jdata['result']['storage_left']}</code>
-• 📬 <b>Storage Used :</b> <code>{0 if jdata['result']['storage_used'] == null else convertBytes(jdata['result']['storage_used'])}</code>
+• 📬 <b>Storage Used :</b> <code>{0 if jdata['result']['storage_used'] == None else convertBytes(jdata['result']['storage_used'])}</code>
 • ⚠️ <b>Premium Expire :</b> <code>{jdata['result']['premium_expire']}</code>
 
 • ♻️ <b>Server Time :</b> <code>{jdata['server_time']}</code>

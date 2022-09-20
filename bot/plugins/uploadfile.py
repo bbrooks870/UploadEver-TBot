@@ -14,7 +14,7 @@ async def upload_file_handler(c: Client, m: Message):
     rpy_media = m.reply_to_message
     media = [rpy_media.document, rpy_media.video, rpy_media.audio]
     file_name = [md for md in media if md is not None][0].file_name
-    __fileName = f"{Path("./").resolve()}/{Config.DIRECTORY}"
+    __fileName = f"{Path('./').resolve()}/{Config.DIRECTORY}"
     try:
         __downLocation = await c.download_media(message=rpy_media, file_name=__fileName)
     except Exception as err:

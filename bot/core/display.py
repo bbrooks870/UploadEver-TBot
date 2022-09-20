@@ -15,9 +15,9 @@ def convertTime(mss: int) -> str:
     m, s = divmod(s, 60)
     hr, m = divmod(m, 60)
     days, hr = divmod(hr, 24)
-    convertedTime = ((str(days) + " days, ") if days else "") + \
-          ((str(hr) + " hours, ") if hr else "") + \
-          ((str(m) + " min, ") if m else "") + \
-          ((str(s) + " sec, ") if s else "") + \
-          ((str(ms) + " msec, ") if ms else "")
+    convertedTime = f"{days} days, " if days else "" + \
+          f"{hr} hours, " if hr else "" + \
+          f"{m} min, " if m else "" + \
+          f"{s} sec, " if s else "" + \
+          f"{ms} msec, " if ms else ""
     return convertedTime[:-2]

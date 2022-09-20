@@ -30,7 +30,7 @@ async def login_handler(c: Client, m: Message):
     else:
         await input_msg.delete()
         await auth_msg.delete()
-        asleep(2)
+        await asleep(2)
         resp = rget(f"https://uploadever.in/api/account/info?key={Token}")
         jdata = resp.json()
         if jdata["status"] == 200:

@@ -61,6 +61,7 @@ async def upload_file_handler(c: Client, m: Message):
     file = [md for md in media if md is not None][0]
     file_name = file.file_name
     mime_type = file.mime_type
+    file_size = file.file_size
     __fileName = f"{Path('./').resolve()}/{Config.DIRECTORY}"
     try:
         __downLocation = await c.download_media(message=rpy_media, file_name=__fileName)
@@ -79,7 +80,7 @@ async def upload_file_handler(c: Client, m: Message):
 • 📨 <b>FileName :</b> <code>{file_name}</code>
 
 • 📋 <b>Mime-Type :</b> <code>{mime_type}</code>
-• 📦 <b>Size :</b> <code>{convertBytes(rpy_media.file_size)}</code>
+• 📦 <b>Size :</b> <code>{convertBytes(file_size)}</code>
 
 • 🔗 <b>URL :</b> <code>{URL}</code>
 ''',

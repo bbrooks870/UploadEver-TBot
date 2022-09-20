@@ -39,7 +39,7 @@ async def upload_file_handler(c: Client, m: Message):
         SESS_ID = jdata['sess_id']
         UP_SER_URL = jdata['result']
     #else: Do Something 
-    Data = check_output(f"curl -F 'sess_id={SESS_ID}' -F 'utype=free' -F 'file_0=@{__downLocation}' {UP_SER_URL}", shell=True).decode('utf-8')
+    Data = check_output(f"curl -F 'sess_id={SESS_ID}' -F 'file_0=@{__downLocation}' {UP_SER_URL}", shell=True).decode('utf-8')
     await m.reply_text(Data)
     
         

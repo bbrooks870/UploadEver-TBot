@@ -3,6 +3,7 @@ from time import time
 from asyncio import sleep as asleep
 import bot
 from bot.core.display import convertBytes, convertTime
+from config import LOGGER
 from typing import Union
 from pyrogram.types import Message, CallbackQuery
 from pyrogram.errors import FloodWait
@@ -29,8 +30,9 @@ async def progress_for_pyrogram(current, total, ud_type, message: Union[Message,
 📶 **Speed:** `{convertBytes(speed)}/s`
 🕰 **ETA:** `{estimated_total_time if estimated_total_time != '' else "0 s"}`
 '''
+        LOGGER.info("Jelp dykgzjfjfzjgxjjzfxkg kg,kgxkg kg kg ")
         try:
-            await message.edit(
+            await message.edit_text(
                 text=f"{ud_type}\n\n{tmp}",
                 parse_mode=enums.ParseMode.MARKDOWN
             )

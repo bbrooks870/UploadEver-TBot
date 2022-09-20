@@ -71,12 +71,8 @@ async def upload_file_handler(c: Client, m: Message):
     
     UpData = check_output(f"curl -F 'sess_id={SESS_ID}' -F 'file_0=@{__downLocation}' {UP_SER_URL}", shell=True).decode('utf-8')
     await downMSG.delete()
-    LOGGER.info(UpData)
-    LOGGER.info(UpData[0])
-    oData = UpData[0]
-    LOGGER.info(oData.get('file_code'))
-    filecode = oData['file_code']
-    URL = f"https://uploadever.in/{filecode}"
+    filecode = UpData.strip(']}{[').replace(":", ",").replace('"', '').split(',')
+    URL = f"https://uploadever.in/{filecode[1]}"
     await m.reply_text(text=f'''📈 <b>Upload Completed</b> 📉
 
 • 📨 <b>FileName :</b> <code>{file_name}</code>

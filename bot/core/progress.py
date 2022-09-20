@@ -5,9 +5,9 @@ import bot
 from bot.core.display import convertBytes, convertTime
 from config import LOGGER
 from typing import Union
+from pyrogram import enums
 from pyrogram.types import Message, CallbackQuery
 from pyrogram.errors import FloodWait
-
 
 async def progress_for_pyrogram(current, total, top_msg, message: Union[Message, CallbackQuery], start):
     now = time()

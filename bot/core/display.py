@@ -7,7 +7,7 @@ def convertBytes(sz) -> str:
     while sz > 2**10:
         sz /= 2**10
         ind += 1
-    return f"{round(sz, 2))} {Units[ind]}"
+    return f"{round(sz, 2)} {Units[ind]}"
 
 
 def convertTime(mss: int) -> str:

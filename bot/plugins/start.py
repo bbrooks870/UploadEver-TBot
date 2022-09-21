@@ -9,21 +9,21 @@ async def start_handler(c: Client, m: Message):
     ''' Start Message of the Bot !!'''
 
     await m.reply_photo(photo='https://te.legra.ph/file/fff361f8f1019fa5162f9.jpg',
-        caption='''<b>🔰 Hello, I am UploadEver.in Uploader Bot! 🔰</b>
+        caption='''<b>🔰 Hello, I am UploadEver.in Uploader and Multi-Tasking Bot! 🔰</b>
 
-☃️  <i>Here you can Upload Files via Forwarding Telegram Files/ Sending Telegram File/Send UploadEver Links/ Direct Download Links to this Bot!</i>
+I can Do Many things, Check Out My Help Section !!
 
-<u>Look Like you haven't logged in yet hit /login to logged in and Use Bot Features!</u>
-<code>Want to know bot features hit /help</code>
-
-<b>💯 Bot Created By ♥️ @MysterySD ♥️ & Powered By ⚡️ UploadEver ⚡️</b>
+<b>💯 Bot Created By ♥️ @MysterySD ♥️
+💥 Powered By ⚡️ UploadEver ⚡️</b>
 <i>If you face any kind of Problem/Error or Feature Request, Message to @MysterySD</i>''',
         quote=True,
         parse_mode=enums.ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup([
-        [InlineKeyboardButton("🗓 Join Channel", url="https://t.me/uploadever"),
-        InlineKeyboardButton("📇 Website", url="https://uploadever.in")],
-        [InlineKeyboardButton("🏷 Help", callback_data="uphelp"),]
+            [InlineKeyboardButton("📃 About", callback_data="upabout"),
+            InlineKeyboardButton("📮 Help", callback_data="uphelp"),
+            InlineKeyboardButton("📊 Stats", callback_data="upstats"),]
+            [InlineKeyboardButton("👥 Group", url="https://t.me/uploadever"),
+            InlineKeyboardButton("📇 Website", url="https://uploadever.in")],
         ])
     )
 
@@ -31,11 +31,64 @@ async def start_handler(c: Client, m: Message):
 async def cb_handlers(c: Client, cb: CallbackQuery):
     ''' CallbackQuery Handlers '''
 
-    if cb.data == "uphelp":
-        await cb.message.edit("Hii",
+    
+    if cb.data == "upabout":
+        await cb.message.edit(text="Hii",
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton("Go Back", callback_data="uphome")]
+                    [InlineKeyboardButton("🔙 Back", callback_data="uphome")]
                 ])
         )
+    elif cb.data == "uphelp":
+        await cb.message.edit(text='''Main  Features :
+        
+☃️  <i>Here you can Upload Files via Forwarding Telegram Files/ Sending Telegram File/Send UploadEver Links to this Bot!</i>
+
+<b>Bot Commands :</b>
+
+<i>/start For Start Bot
+/login To Login
+/logout To Logout from here
+/stats to get account stats/earning/space/etc information
+/supportedlinks to check supported links that can be converted to uploadever
+Send Any File or media to directly Upload !!</i>''',
+            parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("🔙 Back", callback_data="uphome")]
+                ])
+        )
+    elif cb.data == "upstats":
+        await cb.message.edit(text='''Bot Stats:
+        
+Bot Uptime : 
+Today Stats:
+Files Uploaded:
+
+Active Tasks :
+Total Files Uploaded :
+...
+''',
+            parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("🔙 Back", callback_data="uphome")]
+                ])
+        )
+    elif cb.data == "uphome":
+        await cb.message.edit(text='''<b>🔰 Hello, I am UploadEver.in Uploader and Multi-Tasking Bot! 🔰</b>
+
+I can Do Many things, Check Out My Help Section !!
+
+<b>💯 Bot Created By ♥️ @MysterySD ♥️
+💥 Powered By ⚡️ UploadEver ⚡️</b>
+<i>If you face any kind of Problem/Error or Feature Request, Message to @MysterySD</i>''',
+            parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("📃 About", callback_data="upabout"),
+                InlineKeyboardButton("📮 Help", callback_data="uphelp"),
+                InlineKeyboardButton("📊 Stats", callback_data="upstats"),]
+                [InlineKeyboardButton("👥 Group", url="https://t.me/uploadever"),
+                InlineKeyboardButton("📇 Website", url="https://uploadever.in")],
+            ])
+        )
+    
 

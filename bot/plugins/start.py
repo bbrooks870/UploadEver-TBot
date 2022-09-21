@@ -2,7 +2,7 @@
 
 from bot.client import Client
 from pyrogram import filters, enums
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 @Client.on_message(filters.command("start") & filters.private)
 async def start_handler(c: Client, m: Message):
@@ -22,6 +22,21 @@ async def start_handler(c: Client, m: Message):
         parse_mode=enums.ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup([
         [InlineKeyboardButton("🗓 Join Channel", url="https://t.me/uploadever"),
-        InlineKeyboardButton("📇 Website", url="https://uploadever.in")]
+        InlineKeyboardButton("📇 Website", url="https://uploadever.in")],
+        [InlineKeyboardButton("🏷 Help", callback_data="uphelp"),]
         ])
     )
+
+@Client.on_callback_query(filters.regex('^up'))
+async def cb_handlers(c: Client, cb: CallbackQuery):
+    ''' CallbackQuery Handlers '''
+
+    if cb.data == "uphelp":
+        await cb.message.edit("Hii",
+            parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("Go Back", callback_data="uphome")]
+                ])
+        )
+    if cb.data == "upabout":
+    if cb.data == "uphome"

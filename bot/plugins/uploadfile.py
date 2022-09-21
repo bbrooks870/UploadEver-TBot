@@ -42,10 +42,6 @@ async def upload_file_handler(c: Client, m: Message):
     if Token is None: 
         await m.reply_text("<b>😬 I see, you have not Login, Do <i>/login</i> to Use this Command. </b>",  quote=True, parse_mode=enums.ParseMode.HTML)
         return
-    #rpy_media = m.reply_to_message
-    #if not rpy_media:
-        #await m.reply_text("📤 <i>Reply to a Telegram File to Start Uploading to UploadEver Server !!</i>", quote=True, parse_mode=enums.ParseMode.HTML)
-        #return
 
     downMSG = await m.reply_text("🔍 <b>Finding a UploadEver Server to Start Uploading ...</b>", quote=True, parse_mode=enums.ParseMode.HTML)
     resp = rget(f"https://uploadever.in/api/upload/server?key={Token}")
@@ -88,12 +84,12 @@ async def upload_file_handler(c: Client, m: Message):
     URL = f"https://uploadever.in/{filecode[1]}"
     await m.reply_text(text=f'''📈 <b>Upload Completed</b> 📉
 
-• 📨 <b>FileName :</b> <code>{file_name}</code>
+📨 <b>FileName :</b> <code>{file_name}</code>
 
-• 📋 <b>Mime-Type :</b> <code>{mime_type}</code>
-• 📦 <b>Size :</b> <code>{convertBytes(file_size)}</code>
+📋 <b>Type :</b> <code>{mime_type}</code>
+📦 <b>Size :</b> <code>{convertBytes(file_size)}</code>
 
-• 🔗 <b>URL :</b> <code>{URL}</code>
+🔗 <b>URL :</b> <code>{URL}</code>
 ''',
         quote=True,
         parse_mode=enums.ParseMode.HTML,

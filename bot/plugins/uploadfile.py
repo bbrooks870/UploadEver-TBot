@@ -12,7 +12,7 @@ from bot.core.progress import progress_for_pyrogram
 from pyrogram import filters, enums
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-@Client.on_message(filters.command("upload") & filters.private)
+@Client.on_message((filters.video | filters.audio | filters.document) & filters.private)
 async def upload_file_handler(c: Client, m: Message):
     ''' Upload Telegram Files Directly to the UploadEver Server upto 4GB (TG Limit) 
 
@@ -42,10 +42,10 @@ async def upload_file_handler(c: Client, m: Message):
     if Token is None: 
         await m.reply_text("<b>😬 I see, you have not Login, Do <i>/login</i> to Use this Command. </b>",  quote=True, parse_mode=enums.ParseMode.HTML)
         return
-    rpy_media = m.reply_to_message
-    if not rpy_media:
-        await m.reply_text("📤 <i>Reply to a Telegram File to Start Uploading to UploadEver Server !!</i>", quote=True, parse_mode=enums.ParseMode.HTML)
-        return
+    #rpy_media = m.reply_to_message
+    #if not rpy_media:
+        #await m.reply_text("📤 <i>Reply to a Telegram File to Start Uploading to UploadEver Server !!</i>", quote=True, parse_mode=enums.ParseMode.HTML)
+        #return
 
     downMSG = await m.reply_text("🔍 <b>Finding a UploadEver Server to Start Uploading ...</b>", quote=True, parse_mode=enums.ParseMode.HTML)
     resp = rget(f"https://uploadever.in/api/upload/server?key={Token}")
@@ -59,7 +59,7 @@ async def upload_file_handler(c: Client, m: Message):
     await asleep(1.5)
 
     await downMSG.edit(f"🔍 <b>Found a UploadEver Server for Taking Requests !!</b>\n\n 📤 <b>Starting Media Download...</b>", parse_mode=enums.ParseMode.HTML)
-    media = [rpy_media.document, rpy_media.video, rpy_media.audio]
+    media = [m.document, m.video, m.audio]
     file = [md for md in media if md is not None][0]
     file_name = file.file_name
     mime_type = file.mime_type
@@ -67,7 +67,7 @@ async def upload_file_handler(c: Client, m: Message):
     __fileName = f"{Path('./').resolve()}/{Config.DIRECTORY}"
     try:
         __time = time()
-        __downLocation = await c.download_media(message=rpy_media, 
+        __downLocation = await c.download_media(message=m, 
             file_name=__fileName,
             progress=progress_for_pyrogram,
             progress_args=(f"🚄 Fɪʟᴇɴᴀᴍᴇ: {file_name}",

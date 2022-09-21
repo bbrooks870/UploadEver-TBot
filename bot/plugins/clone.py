@@ -1,13 +1,12 @@
 #Copyright 2022-present, Author: 5MysterySD
 
-from re import match
 from requests import get as rget
 from config import LOGGER, USERS_API
 from bot.client import Client
 from pyrogram import filters, enums
 from pyrogram.types import Message
 
-@Client.on_message(filters.text & filters.private)
+@Client.on_message(filters.regex(r'^https?://uploadever\.in\S+') & filters.private)
 async def clone_handler(c: Client, m: Message):
     ''' Clone URL from UploadEver.in Server API:
 
@@ -27,9 +26,6 @@ async def clone_handler(c: Client, m: Message):
     '''
 
     Link = (m.text).strip()
-    if not match(r'^https?://uploadever\.in\S+', Link):
-        await m.reply_text(text="🖇 <b><i>Give a UploadEver.in Link to Clone !!</i></b>", parse_mode=enums.ParseMode.HTML, quote=True)
-        return
     filecode = (Link.split("/"))[-1]
     Token = USERS_API.get(m.chat.id, None)
     if Token is None: text_ = "<b>😬 I see, you have not Login, Do <i>/login</i> to Use this Command. </b>"

@@ -27,7 +27,7 @@ async def clone_handler(c: Client, m: Message):
     '''
 
     Link = (m.text).strip()
-    if not match(r'^https?://uploadever\.in\S+'', Link):
+    if not match(r'^https?://uploadever\.in\S+', Link):
         await m.reply_text(text="🖇 <b><i>Give a UploadEver.in Link to Clone !!</i></b>", parse_mode=enums.ParseMode.HTML, quote=True)
         return
     filecode = (Link.split("/"))[-1]

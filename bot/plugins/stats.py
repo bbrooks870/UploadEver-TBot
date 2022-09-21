@@ -48,9 +48,9 @@ async def stats_handler(c: Client, m: Message):
 • 💸 <b>Balance :</b> <code>{jdata['result']['balance']}</code>
 • 📭 <b>Storage Left :</b> <code>{'Unlimited' if jdata['result']['storage_left'] == 'inf' else jdata['result']['storage_left']}</code>
 • 📬 <b>Storage Used :</b> <code>{0 if jdata['result']['storage_used'] == None else convertBytes(jdata['result']['storage_used'])}</code>
-• ⚠️ <b>Premium Expire :</b> <code>{jdata['result']['premium_expire']}</code>
+• ⚠️ <b>Premium Expiry :</b> <code>{jdata['result']['premium_expire']}</code>
 
-• ♻️ <b>Server Time :</b> <code>{jdata['server_time']}</code>
+♻️ <b>Server Time :</b> <code>{jdata['server_time']}</code>
 
 <b>🗃 Your Account Stats :</b>
 
@@ -61,14 +61,14 @@ async def stats_handler(c: Client, m: Message):
             text_ += f"• ⛔️ <b>{jdata2['msg']}</b> ⛔️"
         elif jdata2['status'] == 200:
             sData = jdata2['result'][0]
-            text_ += f'''• profit_rebills : {sData['profit_rebills']}
+            text_ += f'''• 💳 <b>Profit Rebills :</b> <code>{sData['profit_rebills']}</code>
 • 📥 <b>Downloads :</b> <code>{sData['downloads']}</code>
-• "profit_dl": {sData['profit_dl']}
-• "sales": {sData['sales']}
-• "profit_refs": {sData['profit_refs']}
-• "profit_site": {sData['profit_site']}
-• "day": {sData['day']}
-• "profit_total": {sData['profit_total']}
+• 📩 <b>Profit Download :</b> <code>{sData['profit_dl']}</code>
+• 🗳 <b>Sales :</b> <code>{sData['sales']}</code>
+• 🖋 <b>Profit Refs :</b> <code>{sData['profit_refs']}</code>
+• 🗂 <b>Profit Site :</b> <code>{sData['profit_site']}</code>
+• 📆 <b>Current Day :</b> <code>{sData['day']}</code>
+• 📈 <b>Total Profits :</b> <code>{sData['profit_total']}</code>
 '''
 
     await m.reply_text(text=text_, parse_mode=enums.ParseMode.HTML, quote=True)

@@ -21,9 +21,9 @@ I can Do Many things, Check Out My Help Section !!
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("📃 About", callback_data="upabout"),
             InlineKeyboardButton("📮 Help", callback_data="uphelp"),
-            InlineKeyboardButton("📊 Stats", callback_data="upstats"),]
+            InlineKeyboardButton("📊 Stats", callback_data="upstats")],
             [InlineKeyboardButton("👥 Group", url="https://t.me/uploadever"),
-            InlineKeyboardButton("📇 Website", url="https://uploadever.in")],
+            InlineKeyboardButton("📇 Website", url="https://uploadever.in")]
         ])
     )
 

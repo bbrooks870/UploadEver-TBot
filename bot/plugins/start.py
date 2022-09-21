@@ -38,5 +38,4 @@ async def cb_handlers(c: Client, cb: CallbackQuery):
                     [InlineKeyboardButton("Go Back", callback_data="uphome")]
                 ])
         )
-    if cb.data == "upabout":
-    if cb.data == "uphome"
+
